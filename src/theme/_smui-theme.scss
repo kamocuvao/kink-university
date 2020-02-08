@@ -1,13 +1,25 @@
-//
-// MDC Theme
-//
-
 @import "@material/theme/color-palette";
 
-// Svelte Colors!
-$mdc-theme-primary: #ff3e00;
-$mdc-theme-secondary: #676778;
-// Other Svelte color: #40b3ff
+/* Palette color codes */
+/* Palette URL: http://paletton.com/#uid=15c0u0kbjQA3t+55zYJg1CihxxH */
+
+// As hex codes
+$color-primary-0: #f09bc8; // Main Primary color */
+$color-primary-1: #fee2f1;
+$color-primary-2: #fcd0e7;
+$color-primary-3: #db6da7;
+$color-primary-4: #d25f9c;
+
+// As RGBa codes
+$rgba-primary-0: rgba(240, 155, 200, 1); // Main Primary color */
+$rgba-primary-1: rgba(254, 226, 241, 1);
+$rgba-primary-2: rgba(252, 208, 231, 1);
+$rgba-primary-3: rgba(219, 109, 167, 1);
+$rgba-primary-4: rgba(210, 95, 156, 1);
+
+/* Material Design Colors */
+$mdc-theme-primary: $color-primary-0;
+$mdc-theme-secondary: $color-primary-2;
 
 $mdc-theme-background: #fff;
 $mdc-theme-surface: #fff;
