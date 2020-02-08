@@ -1,55 +1,56 @@
 <script>
-  import Collapse from "sveltestrap/src/Collapse.svelte";
-  import Navbar from "sveltestrap/src/Navbar.svelte";
-  import NavbarBrand from "sveltestrap/src/NavbarBrand.svelte";
-  import NavbarToggler from "sveltestrap/src/NavbarToggler.svelte";
-  import Nav from "sveltestrap/src/Nav.svelte";
-  import NavItem from "sveltestrap/src/NavItem.svelte";
-  import NavLink from "sveltestrap/src/NavLink.svelte";
-  import UncontrolledDropdown from "sveltestrap/src/UncontrolledDropdown.svelte";
-  import DropdownToggle from "sveltestrap/src/DropdownToggle.svelte";
-  import DropdownMenu from "sveltestrap/src/DropdownMenu.svelte";
-  import DropdownItem from "sveltestrap/src/DropdownItem.svelte";
-
-  let isOpen = false;
-
-  function handleUpdate(event) {
-    isOpen = event.detail.isOpen;
-  }
+  import TopAppBar from "@smui/top-app-bar";
+  import { Row } from "@smui/top-app-bar";
+  import { Section } from "@smui/top-app-bar";
+  import { Title } from "@smui/top-app-bar";
+  import IconButton from "@smui/icon-button";
 </script>
 
-<Navbar color="light" light expand="md">
-  <NavbarBrand href="/">Kink University</NavbarBrand>
-  <NavbarToggler on:click={() => (isOpen = !isOpen)} />
-  <Collapse {isOpen} navbar expand="md" on:update={handleUpdate}>
-    <Nav class="ml-auto" navbar>
-      <NavItem>
-        <NavLink href=".">Home</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink href="majors">Majors</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink href="classes">Classes</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink href="clubs-partners">Clubs/Partners</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink href="punishments">Punishments</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink href="schedule">Schedule</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink href="help">Help/Rules</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink href="community">Community</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink href="settings">Settings</NavLink>
-      </NavItem>
-    </Nav>
-  </Collapse>
-</Navbar>
+<TopAppBar variant="static" color="primary">
+  <Row>
+    <Section>
+      <IconButton class="material-icons">menu</IconButton>
+      <Title>Kink University</Title>
+    </Section>
+    <Section align="end" toolbar>
+      <IconButton class="material-icons" aria-label="Download">
+        file_download
+      </IconButton>
+      <IconButton class="material-icons" aria-label="Print this page">
+        print
+      </IconButton>
+      <IconButton class="material-icons" aria-label="Bookmark this page">
+        bookmark
+      </IconButton>
+    </Section>
+  </Row>
+</TopAppBar>
+
+<nav>
+  <ul>
+    <li>
+      <a href=".">Home</a>
+    </li>
+    <li>
+      <a href="majors">Majors</a>
+    </li>
+    <li>
+      <a href="classes">Classes</a>
+    </li>
+    <li>
+      <a href="clubs-partners">Clubs/Partners</a>
+    </li>
+    <li>
+      <a href="punishments">Punishments</a>
+    </li>
+    <li>
+      <a href="schedule">Schedule</a>
+    </li>
+    <li>
+      <a href="help">Help/Rules</a>
+    </li>
+    <li>
+      <a href="settings">Settings</a>
+    </li>
+  </ul>
+</nav>
