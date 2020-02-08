@@ -3,10 +3,9 @@ import resolve from "@rollup/plugin-node-resolve";
 import replace from "@rollup/plugin-replace";
 import commonjs from "@rollup/plugin-commonjs";
 import svelte from "rollup-plugin-svelte";
+import postcss from "rollup-plugin-postcss";
 import babel from "rollup-plugin-babel";
 import { terser } from "rollup-plugin-terser";
-import postcss from "rollup-plugin-postcss";
-
 import config from "sapper/config/rollup.js";
 import pkg from "./package.json";
 
@@ -18,6 +17,9 @@ const onwarn = (warning, onwarn) =>
   (warning.code === "CIRCULAR_DEPENDENCY" &&
     /[/\\]@sapper[/\\]/.test(warning.message)) ||
   onwarn(warning);
+
+const dedupe = importee =>
+  importee === "svelte" || importee.startsWith("svelte/");
 
 const postcssOptions = () => ({
   extensions: [".scss", ".sass"],
@@ -55,7 +57,7 @@ export default {
       }),
       resolve({
         browser: true,
-        dedupe: ["svelte"]
+        dedupe
       }),
       commonjs(),
       postcss(postcssOptions()),
@@ -106,7 +108,7 @@ export default {
         dev
       }),
       resolve({
-        dedupe: ["svelte"]
+        dedupe
       }),
       commonjs(),
       postcss(postcssOptions())
