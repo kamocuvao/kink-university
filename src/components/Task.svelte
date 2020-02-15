@@ -8,10 +8,21 @@
     ActionButtons,
     ActionIcons
   } from "@smui/card";
+  import Dialog, {
+    Title,
+    InitialFocus,
+    Content as DialogContent,
+    Actions as DialogActions
+  } from "@smui/dialog";
+  import Button, { Label } from "@smui/button";
 
-  function handleClick() {
-    console.log("clicked");
+  let dialog;
+
+  function joinTask() {
+    // TODO
   }
+
+  function closeHandler() {}
 
   export let title = "Title";
   export let subtitle = "This is a subtitle.";
@@ -48,7 +59,7 @@
 </style>
 
 <Card style="width:280px;">
-  <PrimaryAction on:click={handleClick()}>
+  <PrimaryAction on:click={() => dialog.open()}>
     <Media style="background-image: url({image}); height:380px;">
       <div class="mediacontent">
         <h2 class="text mdc-typography--headline6">{title}</h2>
@@ -61,3 +72,25 @@
 
   </PrimaryAction>
 </Card>
+
+<Dialog
+  bind:this={dialog}
+  aria-labelledby="dialog-title"
+  aria-describedby="dialog-content"
+  on:MDCDialog:closed={closeHandler}>
+  <Title id="dialog-title">Do you want to join this task?</Title>
+  <DialogContent id="dialog-content">Description of task.</DialogContent>
+  <DialogActions>
+    <Button>
+      <Label>Cancel</Label>
+    </Button>
+    <Button
+      on:click={joinTask}
+      variant="unelevated"
+      color="primary"
+      default
+      use={[InitialFocus]}>
+      <Label>Join</Label>
+    </Button>
+  </DialogActions>
+</Dialog>
