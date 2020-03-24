@@ -18,8 +18,11 @@
   },
   "dependencies": {
     "compression": "^1.7.1",
+    "material-icons": "^0.3.1",
     "polka": "next",
-    "sirv": "^0.4.0"
+    "sirv": "^0.4.0",
+    "typeface-roboto": "0.0.75",
+    "typeface-roboto-mono": "0.0.75"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
