@@ -24,13 +24,13 @@
     <div class="task">
       <Task
         id={c.id}
-        title={c.title}
+        title={c.name}
         subtitle={c.subtitle}
-        description={c.description} />
+        description={c.description}
+        firstoption={c.firstoption}
+        secondoption={c.secondoption}
+        firstpass={c.firstpass}
+        secondpass={c.secondpass} />
     </div>
   {/each}
 </div>
-Class States:
-{#each $classes as c}
-  <p>{$classStates[c.id]}</p>
-{/each}

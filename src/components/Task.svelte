@@ -29,13 +29,25 @@
     $classStates[id] = TaskState.completed;
   }
 
+  function onClick() {
+    if (state === TaskState.inactive) {
+      joinTask();
+    } else if (state === TaskState.active) {
+      completeTask();
+    }
+  }
+
   function closeHandler() {}
 
   export let id = 0;
-  export let title = "Title";
-  export let subtitle = "This is a subtitle.";
-  export let description = "This is a long description of the task.";
-  export let image = "https://via.placeholder.com/280x380.png?text=280x380";
+  export let title = "";
+  export let subtitle = "";
+  export let description = "";
+  export let firstoption = "";
+  export let secondoption = "";
+  export let firstpass = "";
+  export let secondpass = "";
+  export let image = "https://loremflickr.com/280/300/ecchi?lock=" + id;
   $: state = $classStates[id];
 </script>
 
@@ -96,29 +108,32 @@
   aria-describedby="dialog-content"
   on:MDCDialog:closed={closeHandler}>
   <Title id="dialog-title">{title}</Title>
-  <DialogContent id="dialog-content">{description}</DialogContent>
+  <DialogContent id="dialog-content">
+    {description}
+    <hr />
+    <h3>Daily task options</h3>
+    <hr />
+    <p>Option 1: {firstoption}</p>
+    <p>Option 2: {secondoption}</p>
+    <hr />
+    <h3>Exam options</h3>
+    <p>Option 1: {firstpass}</p>
+    <p>Option 2: {secondpass}</p>
+  </DialogContent>
   <DialogActions>
     <Button>
       <Label>Cancel</Label>
     </Button>
-    {#if state === TaskState.inactive}
-      <Button
-        on:click={joinTask}
-        variant="unelevated"
-        color="primary"
-        default
-        use={[InitialFocus]}>
-        <Label>Join</Label>
-      </Button>
-    {:else if state === TaskState.active}
-      <Button
-        on:click={completeTask}
-        variant="unelevated"
-        color="primary"
-        default
-        use={[InitialFocus]}>
-        <Label>Complete</Label>
-      </Button>
-    {/if}
+    <Button
+      on:click={onClick}
+      variant="unelevated"
+      color="primary"
+      default
+      use={[InitialFocus]}
+      disabled={state === TaskState.completed}>
+      <Label>
+        {state === TaskState.inactive ? 'Join' : state === TaskState.active ? 'Complete' : 'Already completed'}
+      </Label>
+    </Button>
   </DialogActions>
 </Dialog>
