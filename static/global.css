@@ -1,4 +1,15 @@
-body {
+html {
+  height: 100%;
+}
+
+body,
+app {
+  display: grid;
+  height: 100%;
   margin: 0px;
   padding: 0px;
+}
+
+#sapper {
+  height: 100%;
 }
