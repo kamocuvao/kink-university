@@ -1,5 +1,6 @@
 import { writable, readable } from "svelte/store";
 import classesData from "./data/classes";
+import { useLocalStorage } from "./useLocalStorage";
 
 export const TaskState = Object.freeze({
   inactive: 1,
@@ -16,7 +17,7 @@ export const TaskState = Object.freeze({
       default:
         return "unknown";
     }
-  }
+  },
 });
 
 const classStateData = {
@@ -48,8 +49,10 @@ const classStateData = {
   306: TaskState.inactive,
   307: TaskState.inactive,
   308: TaskState.inactive,
-  309: TaskState.inactive
+  309: TaskState.inactive,
 };
 
 export const classes = readable(classesData);
 export const classStates = writable(classStateData);
+
+useLocalStorage(classStates, "classStates");
